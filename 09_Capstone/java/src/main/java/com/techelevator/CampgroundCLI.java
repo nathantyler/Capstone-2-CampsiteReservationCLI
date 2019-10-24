@@ -1,8 +1,13 @@
 package com.techelevator;
 
+import java.util.List;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.techelevator.model.*;
 
 public class CampgroundCLI {
 	
@@ -17,16 +22,22 @@ public class CampgroundCLI {
 		dataSource.setUrl(URL);
 		dataSource.setUsername(USERNAME);
 		dataSource.setPassword(PASSWORD);
-
+		
 		CampgroundCLI application = new CampgroundCLI(dataSource);
 		application.run();
 	}
 
-	public CampgroundCLI(DataSource datasource) {
+	public CampgroundCLI(DataSource dataSource) {
 		// create your DAOs here
+		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		String sql = "SELECT * FROM campground";
+		List<Campground> camps = jdbc.query(sql, new CampgroundRowMapper());
+		for (Campground camp : camps) {
+			System.out.println(camp.toString() + "   " + camp.getOpenFromInt() + "    " + camp.getOpenToInt());
+		}
 	}
 
 	public void run() {
-
+		
 	}
 }
