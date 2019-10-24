@@ -3,15 +3,16 @@ package com.techelevator.model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Park implements ParkDAO{
+public class Park {
 
-	private String parkName;
-	private String parkLocation;
-	private LocalDate date;
-	private long area;
-	private long visitors;
-	private String parkDescription;
-	private long park_ID;
+	private int parkId;
+	private String name;
+	private String location;
+	private LocalDate establishDate;
+	private int area;
+	private int visitors;
+	private String description;
+	
 	
 	
 	 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -21,72 +22,140 @@ public class Park implements ParkDAO{
 	  *  Below are the getters and setters  
 	  */
 
+		
+	/**
+	 * @return the parkId
+	 */
+	public int getParkId() {
+		return parkId;
+	}
+
+
+
+	/**
+	 * @return the name
+	 */
 	public String getName() {
-		return parkName;
+		return name;
 	}
-	public void setName(String parkName) {
-		this.parkName = parkName;
-	}
+
+
+
+	/**
+	 * @return the location
+	 */
 	public String getLocation() {
-		return parkLocation;
+		return location;
 	}
-	public void setLocation(String parkLocation) {
-		this.parkLocation = parkLocation;
+
+
+
+	/**
+	 * @return the establishDate
+	 */
+	public LocalDate getEstablishDate() {
+		return establishDate;
 	}
-	public LocalDate getEstDate() {
-		return date;
-	}
-	public void setEstDate(LocalDate date) {
-		this.date = date;
-	}
-	public long getArea() {
+
+
+
+	/**
+	 * @return the area
+	 */
+	public int getArea() {
 		return area;
 	}
-	public void setArea(long area) {
-		this.area = area;
-	}
-	public long getVisitors() {
+
+
+
+	/**
+	 * @return the visitors
+	 */
+	public int getVisitors() {
 		return visitors;
 	}
-	public void setVisitors(long visitors) {
+
+
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	/**
+	 * @param parkId the parkId to set
+	 */
+	public void setParkId(int parkId) {
+		this.parkId = parkId;
+	}
+
+
+
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+
+
+	/**
+	 * @param establishDate the establishDate to set
+	 */
+	public void setEstablishDate(LocalDate establishDate) {
+		this.establishDate = establishDate;
+	}
+
+
+
+	/**
+	 * @param area the area to set
+	 */
+	public void setArea(int area) {
+		this.area = area;
+	}
+
+
+
+	/**
+	 * @param visitors the visitors to set
+	 */
+	public void setVisitors(int visitors) {
 		this.visitors = visitors;
 	}
-	public String getDescription() {
-		return parkDescription;
+
+
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public void setDescription(String parkDescription) {
-		this.parkDescription = parkDescription;
-	}
-	public long getId() {
-		return park_ID;
-	}
-	public void setId(long park_ID) {
-		this.park_ID = park_ID;
-	}
-	
+
+
+
 	@Override
 	
 	//To print out message of park names
 	public String toString() {
-		return parkName +" National Park" ;
+		return name +" National Park" ;
 	}
 	
 	
-	//3 methods need to written 
-	
-	@Override
-	public List<Park> getAllParks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Park> getParkInfo(long choice) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Park> getAllCampgroundsByPark_ID() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }

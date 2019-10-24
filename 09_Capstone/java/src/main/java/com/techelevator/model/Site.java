@@ -4,97 +4,98 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Site implements SiteDAO {
+public class Site {
 
-	private long site_ID;
-	private long campground_ID;
-	private long siteNumber;
-	private long maxOccupancy;
-	private boolean available;
-	private boolean handiAccessable;
-	private long maxRVLength;
+	private int siteId;
+	private int campgroundId;
+	private int siteNumber;
+	private int maxOccupancy;
+	private boolean accessible;
+	private int maxRVLength;
 	private boolean utilities;
-	private BigDecimal dailyFee;
-
-	public long getSiteId() {
-		return site_ID;
+	/**
+	 * @return the siteId
+	 */
+	public int getSiteId() {
+		return siteId;
 	}
-
-	public void setSiteId(long site_ID) {
-		this.site_ID = site_ID;
+	/**
+	 * @return the campgroundId
+	 */
+	public int getCampgroundId() {
+		return campgroundId;
 	}
-
-	public long getCampground_ID() {
-		return campground_ID;
-	}
-
-	public void setCampground_ID(long campground_ID) {
-		this.campground_ID = campground_ID;
-	}
-
-	public long getSiteNum() {
+	/**
+	 * @return the siteNumber
+	 */
+	public int getSiteNumber() {
 		return siteNumber;
 	}
-
-	public void setSiteNum(long siteNumber) {
-		this.siteNumber = siteNumber;
-	}
-
-	public long getMaxOccupancy() {
+	/**
+	 * @return the maxOccupancy
+	 */
+	public int getMaxOccupancy() {
 		return maxOccupancy;
 	}
-
-	public void setMaxOccupy(long maxOccupancy) {
-		this.maxOccupancy = maxOccupancy;
+	/**
+	 * @return the accessible
+	 */
+	public boolean isAccessible() {
+		return accessible;
 	}
-
-	public boolean isAvailable() {
-		return available;
-	}
-
-	public void setAvailable(boolean available) {
-		this.available = available;
-	
-	//Below is Bonus 3 F
-	}
-	public boolean isHandiAccessable() {
-			return handiAccessable;
-	}
-	public void setHandiAccessable(boolean handiAccessable) {
-		this.handiAccessable = handiAccessable;
-	// Above is Bonus 3 F
-	}
-
-	public long getMaxRVLength() {
+	/**
+	 * @return the maxRVLength
+	 */
+	public int getMaxRVLength() {
 		return maxRVLength;
 	}
-
-	public void setMaxRVLength(long maxRVLength) {
-		this.maxRVLength = maxRVLength;
-	}
-
+	/**
+	 * @return the utilities
+	 */
 	public boolean isUtilities() {
 		return utilities;
 	}
-
+	/**
+	 * @param siteId the siteId to set
+	 */
+	public void setSiteId(int siteId) {
+		this.siteId = siteId;
+	}
+	/**
+	 * @param campgroundId the campgroundId to set
+	 */
+	public void setCampgroundId(int campgroundId) {
+		this.campgroundId = campgroundId;
+	}
+	/**
+	 * @param siteNumber the siteNumber to set
+	 */
+	public void setSiteNumber(int siteNumber) {
+		this.siteNumber = siteNumber;
+	}
+	/**
+	 * @param maxOccupancy the maxOccupancy to set
+	 */
+	public void setMaxOccupancy(int maxOccupancy) {
+		this.maxOccupancy = maxOccupancy;
+	}
+	/**
+	 * @param accessible the accessible to set
+	 */
+	public void setAccessible(boolean accessible) {
+		this.accessible = accessible;
+	}
+	/**
+	 * @param maxRVLength the maxRVLength to set
+	 */
+	public void setMaxRVLength(int maxRVLength) {
+		this.maxRVLength = maxRVLength;
+	}
+	/**
+	 * @param utilities the utilities to set
+	 */
 	public void setUtilities(boolean utilities) {
 		this.utilities = utilities;
-	}
-
-	public BigDecimal getDailyFee() {
-		return dailyFee;
-	}
-
-	public void setDailyFee(BigDecimal dailyFee) {
-		this.dailyFee = dailyFee.setScale(2);
-	}
-
-	
-	//1 method needs to be written
-	@Override
-	public List<Site> getAllSites(long campground_ID, LocalDate fromDate, LocalDate toDate) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

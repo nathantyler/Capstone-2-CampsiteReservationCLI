@@ -3,70 +3,87 @@ package com.techelevator.model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class Reservation implements ReservationDAO {
+public class Reservation {
 
-	 private long reservation_ID;
-	 private long site_ID;
-	 private String name;
-	 private LocalDate fromDate;
-	 private LocalDate toDate;
-	 private LocalDate createDate;
-	 
-	 
-	public long getReservation_ID() {
-		return reservation_ID;
+	private int reservationId;
+	private int siteId;
+	private String name;
+	private LocalDate fromDate;
+	private LocalDate toDate;
+	private LocalDate createDate;
+	/**
+	 * @return the reservationId
+	 */
+	public int getReservationId() {
+		return reservationId;
 	}
-	public void setReservation_ID(long reservation_ID) {
-		this.reservation_ID = reservation_ID;
+	/**
+	 * @return the siteId
+	 */
+	public int getSiteId() {
+		return siteId;
 	}
-	public long getSite_ID() {
-		return site_ID;
-	}
-	public void setSiteId(long site_ID) {
-		this.site_ID = site_ID;
-	}
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
+	/**
+	 * @return the fromDate
+	 */
 	public LocalDate getFromDate() {
 		return fromDate;
 	}
-	public void setFromDate(LocalDate fromDate) {
-		this.fromDate = fromDate;
-	}
+	/**
+	 * @return the toDate
+	 */
 	public LocalDate getToDate() {
 		return toDate;
 	}
-	public void setToDate(LocalDate toDate) {
-		this.toDate = toDate;
-	}
+	/**
+	 * @return the createDate
+	 */
 	public LocalDate getCreateDate() {
 		return createDate;
 	}
+	/**
+	 * @param reservationId the reservationId to set
+	 */
+	public void setReservationId(int reservationId) {
+		this.reservationId = reservationId;
+	}
+	/**
+	 * @param siteId the siteId to set
+	 */
+	public void setSiteId(int siteId) {
+		this.siteId = siteId;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+	/**
+	 * @param fromDate the fromDate to set
+	 */
+	public void setFromDate(LocalDate fromDate) {
+		this.fromDate = fromDate;
+	}
+	/**
+	 * @param toDate the toDate to set
+	 */
+	public void setToDate(LocalDate toDate) {
+		this.toDate = toDate;
+	}
+	/**
+	 * @param createDate the createDate to set
+	 */
 	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
 	}
+
 	
-	
-	
-	//3 methods need to be written
-	@Override
-	public List<Reservation> getAllReservations(long campId, LocalDate fromDate, LocalDate toDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public void setReservation(long site_ID, LocalDate fromDate, LocalDate toDate, String name) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public List<Reservation> getConfirmId(String name, LocalDate fromDate) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	 
-	}
+
+}
