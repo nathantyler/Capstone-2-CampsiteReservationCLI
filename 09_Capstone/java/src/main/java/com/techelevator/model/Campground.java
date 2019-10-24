@@ -1,9 +1,10 @@
 package com.techelevator.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
-public class Campground  {
+public class Campground implements CampgroundDAO {
 
 	private long campground_ID;
 	private long park_ID;
@@ -63,6 +64,18 @@ public class Campground  {
 	//In case we need to print out messages using strings and bigdecimal
 	public String toString() {
 		return campGroundName +"   "+ openMonth + "    "+ closedMonth+"    "+dailyFee;
+	}
+	
+	// 2 methods need to be written
+	@Override
+	public List<Campground> getAllCampgrounds(long park_ID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Campground> getCampgroundInfoByPark(long choice) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	}

@@ -1,8 +1,9 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class Park {
+public class Park implements ParkDAO{
 
 	private String parkName;
 	private String parkLocation;
@@ -68,5 +69,24 @@ public class Park {
 	//To print out message of park names
 	public String toString() {
 		return parkName +" National Park" ;
+	}
+	
+	
+	//3 methods need to written 
+	
+	@Override
+	public List<Park> getAllParks() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Park> getParkInfo(long choice) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<Park> getAllCampgroundsByPark_ID() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

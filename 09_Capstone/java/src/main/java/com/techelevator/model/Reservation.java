@@ -1,8 +1,9 @@
 package com.techelevator.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
-public class Reservation {
+public class Reservation implements ReservationDAO {
 
 	 private long reservation_ID;
 	 private long site_ID;
@@ -47,6 +48,25 @@ public class Reservation {
 	}
 	public void setCreateDate(LocalDate createDate) {
 		this.createDate = createDate;
+	}
+	
+	
+	
+	//3 methods need to be written
+	@Override
+	public List<Reservation> getAllReservations(long campId, LocalDate fromDate, LocalDate toDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void setReservation(long site_ID, LocalDate fromDate, LocalDate toDate, String name) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<Reservation> getConfirmId(String name, LocalDate fromDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	 
 	}

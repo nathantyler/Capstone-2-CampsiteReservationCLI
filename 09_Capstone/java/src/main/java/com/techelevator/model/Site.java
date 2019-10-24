@@ -89,6 +89,8 @@ public class Site implements SiteDAO {
 		this.dailyFee = dailyFee.setScale(2);
 	}
 
+	
+	//1 method needs to be written
 	@Override
 	public List<Site> getAllSites(long campground_ID, LocalDate fromDate, LocalDate toDate) {
 		// TODO Auto-generated method stub
