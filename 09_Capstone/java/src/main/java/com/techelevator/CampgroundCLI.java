@@ -10,6 +10,7 @@ public class CampgroundCLI {
 	private static final String URL = "jdbc:postgresql://localhost:5432/" + DATABASE_NAME;
 	private static final String USERNAME = "postgres";
 	private static final String PASSWORD = "postgres1";
+	
 
 	public static void main(String[] args) {
 		BasicDataSource dataSource = new BasicDataSource();
