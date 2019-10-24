@@ -12,25 +12,21 @@ public class Park {
 	private int area;
 	private int visitors;
 	private String description;
-	
-	
-	
-	 /* ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	  * The above satisfies requirement 1a= A park includes an id, name, location,
-	  *  established date, area, annual visitor count, and description. 
-	  *  
-	  *  Below are the getters and setters  
-	  */
 
-		
+	/*
+	 * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The above satisfies requirement 1a=
+	 * A park includes an id, name, location, established date, area, annual visitor
+	 * count, and description.
+	 * 
+	 * Below are the getters and setters
+	 */
+
 	/**
 	 * @return the parkId
 	 */
 	public int getParkId() {
 		return parkId;
 	}
-
-
 
 	/**
 	 * @return the name
@@ -39,16 +35,12 @@ public class Park {
 		return name;
 	}
 
-
-
 	/**
 	 * @return the location
 	 */
 	public String getLocation() {
 		return location;
 	}
-
-
 
 	/**
 	 * @return the establishDate
@@ -57,16 +49,12 @@ public class Park {
 		return establishDate;
 	}
 
-
-
 	/**
 	 * @return the area
 	 */
 	public int getArea() {
 		return area;
 	}
-
-
 
 	/**
 	 * @return the visitors
@@ -75,16 +63,12 @@ public class Park {
 		return visitors;
 	}
 
-
-
 	/**
 	 * @return the description
 	 */
 	public String getDescription() {
 		return description;
 	}
-
-
 
 	/**
 	 * @param parkId the parkId to set
@@ -93,16 +77,12 @@ public class Park {
 		this.parkId = parkId;
 	}
 
-
-
 	/**
 	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
 
 	/**
 	 * @param location the location to set
@@ -111,16 +91,12 @@ public class Park {
 		this.location = location;
 	}
 
-
-
 	/**
 	 * @param establishDate the establishDate to set
 	 */
 	public void setEstablishDate(LocalDate establishDate) {
 		this.establishDate = establishDate;
 	}
-
-
 
 	/**
 	 * @param area the area to set
@@ -129,16 +105,12 @@ public class Park {
 		this.area = area;
 	}
 
-
-
 	/**
 	 * @param visitors the visitors to set
 	 */
 	public void setVisitors(int visitors) {
 		this.visitors = visitors;
 	}
-
-
 
 	/**
 	 * @param description the description to set
@@ -147,15 +119,12 @@ public class Park {
 		this.description = description;
 	}
 
-
-
 	@Override
-	
-	//To print out message of park names
+
+	// To print out message of park names
 	public String toString() {
-		return name +" National Park" ;
+		return parkId + "   " + name + "   " + location + "   " + establishDate + "   " + area + "   " + visitors
+				+ "   " + description;
 	}
-	
-	
 
 }
