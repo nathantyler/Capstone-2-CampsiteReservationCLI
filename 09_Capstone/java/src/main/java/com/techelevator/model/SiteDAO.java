@@ -1,9 +1,12 @@
 package com.techelevator.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface SiteDAO {
+	// We may not need this.
+	public List<Site> getAllCampsitesByCampgroundId(int id);
 	
-	public List<Site> getAllSites(long campground_ID,LocalDate fromDate,LocalDate toDate);
+	// Return a specific site by site ID
+	public Site getSiteBySiteId(int id);
+	
 }

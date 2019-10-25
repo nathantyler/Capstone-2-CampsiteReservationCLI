@@ -3,8 +3,9 @@ package com.techelevator.model;
 import java.util.List;
 
 public interface ParkDAO {
-	
-		public List<Park> getAllParks();
-		public List<Park> getParkInfo(long choice);
-		public List<Park> getAllCampgroundsByPark_ID();
-	}
+
+	// The user requires access to all parks sorted alphabetically
+	public List<Park> getAllParksAlphabetically();
+	// The user requires access to a park by its specific ID. 
+	public Park getParkById(int id);
+}

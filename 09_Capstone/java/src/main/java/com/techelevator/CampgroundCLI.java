@@ -41,26 +41,26 @@ public class CampgroundCLI {
 		for (Campground camp : camps) {
 			System.out.println(camp.toString() + "   " + camp.getOpenFromInt() + "    " + camp.getOpenToInt());
 		}
-		System.out.println("\n\n");
-		sql = "SELECT * FROM park";
-		List<Park> parks = jdbc.query(sql, new ParkRowMapper());
-		for (Park park : parks) {
-			System.out.println(park.toString());
-		}
-		
-		System.out.println("\n\n");
-		sql = "SELECT * FROM reservation";
-		List<Reservation> reses = jdbc.query(sql, new ReservationRowMapper());
-		for (Reservation res : reses) {
-			System.out.println(res.toString());
-		}
-		
-		System.out.println("\n\n");
-		sql = "SELECT * FROM site";
-		List<Site> sites = jdbc.query(sql, new SiteRowMapper());
-		for (Site site : sites) {
-			System.out.println(site.toString());
-		}
+//		System.out.println("\n\n");
+//		sql = "SELECT * FROM park";
+//		List<Park> parks = jdbc.query(sql, new ParkRowMapper());
+//		for (Park park : parks) {
+//			System.out.println(park.toString());
+//		}
+//		
+//		System.out.println("\n\n");
+//		sql = "SELECT * FROM reservation";
+//		List<Reservation> reses = jdbc.query(sql, new ReservationRowMapper());
+//		for (Reservation res : reses) {
+//			System.out.println(res.toString());
+//		}
+//		
+//		System.out.println("\n\n");
+//		sql = "SELECT * FROM site";
+//		List<Site> sites = jdbc.query(sql, new SiteRowMapper());
+//		for (Site site : sites) {
+//			System.out.println(site.toString());
+//		}
 	}
 
 	public void run() {
