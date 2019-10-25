@@ -3,6 +3,8 @@ package com.techelevator.model;
 import java.time.LocalDate;
 
 public class Reservation {
+	
+	
 
 	private int reservationId;
 	private int siteId;

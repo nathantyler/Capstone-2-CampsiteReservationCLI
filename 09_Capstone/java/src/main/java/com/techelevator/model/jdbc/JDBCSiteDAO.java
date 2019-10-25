@@ -31,6 +31,8 @@ public class JDBCSiteDAO implements SiteDAO {
 		jdbcT = new JdbcTemplate(ds);
 	}
 
+	
+	
 	@Override
 	public List<Site> getAllCampsitesByCampgroundId(int id) {
 		String sql = "SELECT * FROM " + TABLE_NAME + 
