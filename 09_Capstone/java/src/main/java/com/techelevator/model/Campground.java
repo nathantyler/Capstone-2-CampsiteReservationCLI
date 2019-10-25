@@ -138,7 +138,7 @@ public class Campground {
 	public void setOpenFromInt(int openFromInt) {
 		this.openFromInt = openFromInt;
 	}
-	
+
 	/**
 	 * @param openToInt the openToInt to set
 	 */
@@ -167,7 +167,7 @@ public class Campground {
 //			this.openFromInt = 0;
 //		}
 //	}
-	
+
 	/**
 	 * @param Set openFromInt openFrom
 	 */
@@ -189,8 +189,6 @@ public class Campground {
 //			this.openFromInt = 0;
 //		}
 //	}
-
-
 
 	@Override
 	public String toString() {

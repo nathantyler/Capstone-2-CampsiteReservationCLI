@@ -10,6 +10,8 @@ public class Reservation {
 	private LocalDate fromDate;
 	private LocalDate toDate;
 	private LocalDate createDate;
+	
+
 	/**
 	 * @return the reservationId
 	 */

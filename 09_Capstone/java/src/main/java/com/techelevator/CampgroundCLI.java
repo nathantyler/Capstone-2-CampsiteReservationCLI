@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -76,20 +77,40 @@ public class CampgroundCLI {
 //			System.out.println("Caught!");
 //		}
 
-		JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
-		List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
-		for (Campground cg : cgs)
-			System.out.println(cg.toString());
-		System.out.println("\n\n\n");
-		cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
-		for (Campground cg : cgs)
-			System.out.println(cg.toString());
-		System.out.println("\n\n\n");
-		try {
-			System.out.println(cgdao.getCampgroundByCGId(4).toString());
-		} catch (EmptyResultDataAccessException e) {
-			System.out.println("Caught!");
-		}
+//		JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
+//		List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
+//		for (Campground cg : cgs)
+//			System.out.println(cg.toString());
+//		System.out.println("\n\n\n");
+//		cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
+//		for (Campground cg : cgs)
+//			System.out.println(cg.toString());
+//		System.out.println("\n\n\n");
+//		try {
+//			System.out.println(cgdao.getCampgroundByCGId(4).toString());
+//		} catch (EmptyResultDataAccessException e) {
+//			System.out.println("Caught!");
+//		}
+		
+//		JDBCSiteDAO sdao = new JDBCSiteDAO(dataSource);
+//		List<Site> ss = sdao.getAllCampsitesByCampgroundId(4);
+//		for (Site s : ss)
+//			System.out.println(s.toString());
+//		System.out.println("\n\n\n");
+////		cgs = cgdao.getAllOpenSites(2, 1, 11);
+////		for (Site cg : cgs)
+////			System.out.println(cg.toString());
+////		System.out.println("\n\n\n");
+//		try {
+//			System.out.println(sdao.getSiteBySiteId(615).toString());
+//		} catch (EmptyResultDataAccessException e) {
+//			System.out.println("Caught!");
+//		}
+		//LocalDate from = new LocalDate("1999-12-25");
+//		LocalDate.of(year,month,dayOfMonth)
+		JDBCReservationDAO rdao = new JDBCReservationDAO(dataSource);
+		//System.out.println(rdao.makeReservation(123, LocalDate.of(1929, 12, 31), LocalDate.of(2011, 9, 11), "some dumb res name redux"));
+		System.out.println(rdao.checkAvailabilityOfSite(20, LocalDate.of(2019, 11, 11), LocalDate.of(2019, 11, 16)));
 	}
 
 	public void run() {
