@@ -76,17 +76,32 @@ public class CampgroundCLI {
 //			System.out.println("Caught!");
 //		}
 
-		JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
-		List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
-		for (Campground cg : cgs)
-			System.out.println(cg.toString());
+//		JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
+//		List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
+//		for (Campground cg : cgs)
+//			System.out.println(cg.toString());
+//		System.out.println("\n\n\n");
+//		cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
+//		for (Campground cg : cgs)
+//			System.out.println(cg.toString());
+//		System.out.println("\n\n\n");
+//		try {
+//			System.out.println(cgdao.getCampgroundByCGId(4).toString());
+//		} catch (EmptyResultDataAccessException e) {
+//			System.out.println("Caught!");
+//		}
+		
+		JDBCSiteDAO sdao = new JDBCSiteDAO(dataSource);
+		List<Site> ss = sdao.getAllCampsitesByCampgroundId(4);
+		for (Site s : ss)
+			System.out.println(s.toString());
 		System.out.println("\n\n\n");
-		cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
-		for (Campground cg : cgs)
-			System.out.println(cg.toString());
-		System.out.println("\n\n\n");
+//		cgs = cgdao.getAllOpenSites(2, 1, 11);
+//		for (Site cg : cgs)
+//			System.out.println(cg.toString());
+//		System.out.println("\n\n\n");
 		try {
-			System.out.println(cgdao.getCampgroundByCGId(4).toString());
+			System.out.println(sdao.getSiteBySiteId(615).toString());
 		} catch (EmptyResultDataAccessException e) {
 			System.out.println("Caught!");
 		}
