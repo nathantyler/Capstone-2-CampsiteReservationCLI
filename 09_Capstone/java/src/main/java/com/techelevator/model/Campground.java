@@ -3,7 +3,7 @@ package com.techelevator.model;
 import java.math.BigDecimal;
 
 public class Campground {
-	
+
 	// I had to change some of these variable names
 	// as I know they were gonna leave to confusion down the line
 	// I try to keep them as close to as possible to the database column names
@@ -24,11 +24,6 @@ public class Campground {
 	 * 
 	 */
 
-	
-
-	
-
-	// In case we need to print out messages using strings and bigdecimal
 	/**
 	 * @return the campgroundId
 	 */
@@ -111,8 +106,8 @@ public class Campground {
 	 */
 	public void setDailyFee(BigDecimal dailyFee) {
 		this.dailyFee = dailyFee;
-	}	
-	
+	}
+
 	// The column daliy_fee in the database uses the Postgres datatype "money".
 	// Java doesn't have a direct analog. As such, passing the dailyFee as String is
 	// probably going to be helpful.
@@ -120,6 +115,7 @@ public class Campground {
 		this.dailyFee = new BigDecimal(dailyFee);
 	}
 
+	// In case we need to print out messages using strings and bigdecimal
 	@Override
 	public String toString() {
 		return name + "   " + openTo + "    " + openTo + "    " + dailyFee;
