@@ -14,6 +14,8 @@ public class Campground {
 	private String openFrom;
 	private String openTo;
 	private BigDecimal dailyFee;
+	private int openFromInt;
+	private int openToInt;
 
 	/*
 	 * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The above satisfies requirement 2a=
@@ -24,6 +26,7 @@ public class Campground {
 	 * 
 	 */
 
+	// In case we need to print out messages using strings and bigdecimal
 	/**
 	 * @return the campgroundId
 	 */
@@ -105,7 +108,7 @@ public class Campground {
 	 * @param dailyFee the dailyFee to set
 	 */
 	public void setDailyFee(BigDecimal dailyFee) {
-		this.dailyFee = dailyFee;
+		this.dailyFee = dailyFee.setScale(2);
 	}
 
 	// The column daliy_fee in the database uses the Postgres datatype "money".
@@ -115,10 +118,83 @@ public class Campground {
 		this.dailyFee = new BigDecimal(dailyFee);
 	}
 
-	// In case we need to print out messages using strings and bigdecimal
+	/**
+	 * @return the openFromInt
+	 */
+	public int getOpenFromInt() {
+		return openFromInt;
+	}
+
+	/**
+	 * @return the openToInt
+	 */
+	public int getOpenToInt() {
+		return openToInt;
+	}
+
+	/**
+	 * @param openFromInt the openFromInt to set
+	 */
+	public void setOpenFromInt(int openFromInt) {
+		this.openFromInt = openFromInt;
+	}
+	
+	/**
+	 * @param openToInt the openToInt to set
+	 */
+	public void setOpenToInt(int openToInt) {
+		this.openToInt = openToInt;
+	}
+
+	/**
+	 * @param Set openFromInt from a String
+	 */
+//	public void setOpenFromInt(String str) {
+//		try {
+//			this.openFromInt = Integer.parseInt(str);
+//		} catch (NumberFormatException e) {
+//			this.openFromInt = 0;
+//		}
+//	}
+
+	/**
+	 * @param set openToInt from a String
+	 */
+//	public void setOpenToInt(String str) {
+//		try {
+//			this.openFromInt = Integer.parseInt(str);
+//		} catch (NumberFormatException e) {
+//			this.openFromInt = 0;
+//		}
+//	}
+	
+	/**
+	 * @param Set openFromInt openFrom
+	 */
+//	public void setOpenFromInt() {
+//		try {
+//			this.openFromInt = Integer.parseInt(openFrom);
+//		} catch (NumberFormatException e) {
+//			this.openFromInt = 0;
+//		}
+//	}
+
+	/**
+	 * @param set openToInt from a openTo
+	 */
+//	public void setOpenToInt() {
+//		try {
+//			this.openFromInt = Integer.parseInt(openTo);
+//		} catch (NumberFormatException e) {
+//			this.openFromInt = 0;
+//		}
+//	}
+
+
+
 	@Override
 	public String toString() {
-		return name + "   " + openTo + "    " + openTo + "    " + dailyFee;
+		return name + "   " + openFrom + "    " + openTo + "    " + dailyFee;
 	}
 
 }
