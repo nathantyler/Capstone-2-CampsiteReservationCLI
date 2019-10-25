@@ -40,78 +40,80 @@ public class CampgroundCLI {
 		 * 
 		 */
 
-//		
-//		JdbcTemplate jdbc = new JdbcTemplate(dataSource);
-//		String sql = "SELECT * FROM campground";
-//		List<Campground> camps = jdbc.query(sql, new CampgroundRowMapper());
-//		for (Campground camp : camps) {
-//			System.out.println(camp.toString() + "   " + camp.getOpenFromInt() + "    " + camp.getOpenToInt());
-//		}
-//		System.out.println("\n\n");
-//		sql = "SELECT * FROM park";
-//		List<Park> parks = jdbc.query(sql, new ParkRowMapper());
-//		for (Park park : parks) {
-//			System.out.println(park.toString());
-//		}
-//		
-//		System.out.println("\n\n");
-//		sql = "SELECT * FROM reservation";
-//		List<Reservation> reses = jdbc.query(sql, new ReservationRowMapper());
-//		for (Reservation res : reses) {
-//			System.out.println(res.toString());
-//		}
-//		
-//		System.out.println("\n\n");
-//		sql = "SELECT * FROM site";
-//		List<Site> sites = jdbc.query(sql, new SiteRowMapper());
-//		for (Site site : sites) {
-//			System.out.println(site.toString());
-//		}
-//		JDBCParkDAO pdao = new JDBCParkDAO(dataSource);
-//		List<Park> parks = pdao.getAllParksAlphabetically();
-//		for (Park park : parks)
-//			System.out.println(park.toString());
-//		try {
-//			System.out.println(pdao.getParkById(0).toString());
-//		} catch (EmptyResultDataAccessException e) {
-//			System.out.println("Caught!");
-//		}
+		//
+		// JdbcTemplate jdbc = new JdbcTemplate(dataSource);
+		// String sql = "SELECT * FROM campground";
+		// List<Campground> camps = jdbc.query(sql, new CampgroundRowMapper());
+		// for (Campground camp : camps) {
+		// System.out.println(camp.toString() + " " + camp.getOpenFromInt() + " " +
+		// camp.getOpenToInt());
+		// }
+		// System.out.println("\n\n");
+		// sql = "SELECT * FROM park";
+		// List<Park> parks = jdbc.query(sql, new ParkRowMapper());
+		// for (Park park : parks) {
+		// System.out.println(park.toString());
+		// }
+		//
+		// System.out.println("\n\n");
+		// sql = "SELECT * FROM reservation";
+		// List<Reservation> reses = jdbc.query(sql, new ReservationRowMapper());
+		// for (Reservation res : reses) {
+		// System.out.println(res.toString());
+		// }
+		//
+		// System.out.println("\n\n");
+		// sql = "SELECT * FROM site";
+		// List<Site> sites = jdbc.query(sql, new SiteRowMapper());
+		// for (Site site : sites) {
+		// System.out.println(site.toString());
+		// }
+		// JDBCParkDAO pdao = new JDBCParkDAO(dataSource);
+		// List<Park> parks = pdao.getAllParksAlphabetically();
+		// for (Park park : parks)
+		// System.out.println(park.toString());
+		// try {
+		// System.out.println(pdao.getParkById(0).toString());
+		// } catch (EmptyResultDataAccessException e) {
+		// System.out.println("Caught!");
+		// }
 
-//		JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
-//		List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
-//		for (Campground cg : cgs)
-//			System.out.println(cg.toString());
-//		System.out.println("\n\n\n");
-//		cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
-//		for (Campground cg : cgs)
-//			System.out.println(cg.toString());
-//		System.out.println("\n\n\n");
-//		try {
-//			System.out.println(cgdao.getCampgroundByCGId(4).toString());
-//		} catch (EmptyResultDataAccessException e) {
-//			System.out.println("Caught!");
-//		}
-		
-//		JDBCSiteDAO sdao = new JDBCSiteDAO(dataSource);
-//		List<Site> ss = sdao.getAllCampsitesByCampgroundId(4);
-//		for (Site s : ss)
-//			System.out.println(s.toString());
-//		System.out.println("\n\n\n");
-////		cgs = cgdao.getAllOpenSites(2, 1, 11);
-////		for (Site cg : cgs)
-////			System.out.println(cg.toString());
-////		System.out.println("\n\n\n");
-//		try {
-//			System.out.println(sdao.getSiteBySiteId(615).toString());
-//		} catch (EmptyResultDataAccessException e) {
-//			System.out.println("Caught!");
-//		}
-		//LocalDate from = new LocalDate("1999-12-25");
-//		LocalDate.of(year,month,dayOfMonth)
+		// JDBCCampgroundDAO cgdao = new JDBCCampgroundDAO(dataSource);
+		// List<Campground> cgs = cgdao.getAllCampgroundsByParkId(3);
+		// for (Campground cg : cgs)
+		// System.out.println(cg.toString());
+		// System.out.println("\n\n\n");
+		// cgs = cgdao.getAllOpenCampgrounds(2, 1, 11);
+		// for (Campground cg : cgs)
+		// System.out.println(cg.toString());
+		// System.out.println("\n\n\n");
+		// try {
+		// System.out.println(cgdao.getCampgroundByCGId(4).toString());
+		// } catch (EmptyResultDataAccessException e) {
+		// System.out.println("Caught!");
+		// }
+
+		// JDBCSiteDAO sdao = new JDBCSiteDAO(dataSource);
+		// List<Site> ss = sdao.getAllCampsitesByCampgroundId(4);
+		// for (Site s : ss)
+		// System.out.println(s.toString());
+		// System.out.println("\n\n\n");
+		//// cgs = cgdao.getAllOpenSites(2, 1, 11);
+		//// for (Site cg : cgs)
+		//// System.out.println(cg.toString());
+		//// System.out.println("\n\n\n");
+		// try {
+		// System.out.println(sdao.getSiteBySiteId(615).toString());
+		// } catch (EmptyResultDataAccessException e) {
+		// System.out.println("Caught!");
+		// }
+		// LocalDate from = new LocalDate("1999-12-25");
+		// LocalDate.of(year,month,dayOfMonth)
 		JDBCReservationDAO rdao = new JDBCReservationDAO(dataSource);
-		//System.out.println(rdao.makeReservation(123, LocalDate.of(1929, 12, 31), LocalDate.of(2011, 9, 11), "some dumb res name redux"));
+		// System.out.println(rdao.makeReservation(123, LocalDate.of(1929, 12, 31),
+		// LocalDate.of(2011, 9, 11), "some dumb res name redux"));
 		System.out.println(rdao.checkAvailabilityOfSite(20, LocalDate.of(2019, 11, 11), LocalDate.of(2019, 11, 16)));
-		//n
+		// n
 	}
 
 	public void run() {
