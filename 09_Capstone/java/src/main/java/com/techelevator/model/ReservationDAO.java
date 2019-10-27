@@ -18,4 +18,5 @@ public interface ReservationDAO {
 	// available
 	// false if not.
 	public boolean checkAvailabilityOfSite(int id, LocalDate from, LocalDate to);
+
 }
