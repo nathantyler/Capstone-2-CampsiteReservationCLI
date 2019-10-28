@@ -1,6 +1,7 @@
 package com.techelevator.model;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Campground {
 
@@ -189,6 +190,14 @@ public class Campground {
 //			this.openFromInt = 0;
 //		}
 //	}
+	
+	public boolean CampgroundIsClosed(LocalDate from, LocalDate to) {
+		if (openFromInt == 1 && openToInt == 12)
+			return false;
+		LocalDate campOpen = LocalDate.of(from.getYear(), openFromInt, 1);
+		LocalDate campClosed = LocalDate.of(from.getYear(), openToInt, 1);
+		return from.isBefore(campOpen) || to.isAfter(campClosed);
+	}
 
 	@Override
 	public String toString() {
