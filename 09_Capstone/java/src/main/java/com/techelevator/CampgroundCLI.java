@@ -30,6 +30,7 @@ public class CampgroundCLI {
 			MENU_OPTION_RETURN_TO_MAIN };
 
 	private static final String CG_OPTION_SEARCH_RES = "Search for Available Reservation";
+	@SuppressWarnings("unused")
 	private static final String CG_OPTION_RET_TO_PREV = "Return to Previous Screen";
 	private static final String[] CG_MENU_OPTIONS = new String[] { CG_OPTION_SEARCH_RES, MENU_OPTION_RETURN_TO_MAIN };
 

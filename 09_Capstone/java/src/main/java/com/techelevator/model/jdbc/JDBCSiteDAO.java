@@ -7,10 +7,7 @@ import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.techelevator.model.Reservation;
-import com.techelevator.model.Site;
-import com.techelevator.model.SiteDAO;
-import com.techelevator.model.SiteRowMapper;
+import com.techelevator.model.*;
 
 public class JDBCSiteDAO implements SiteDAO {
 
