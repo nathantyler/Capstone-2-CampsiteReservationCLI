@@ -53,9 +53,11 @@ public class JDBCReservationDAO implements ReservationDAO {
 		return thisRes.getReservationId();
 	}
 
-	// Unfortunately I think this is no longer needed after adding the get top 5 sites by 
-	// campground ID and desired dates method that just got added to the Site JDBCDAO.
-	// Too bad...
+	/*
+	 * Unfortunately I think this is no longer needed after adding the get top 5
+	 * sites by campground ID and desired dates method that just got added to the
+	 * Site JDBCDAO. Too bad...
+	 */
 	@Override
 	public boolean checkAvailabilityOfSite(int siteId, LocalDate from, LocalDate to) {
 		String sql = "SELECT * FROM " + TABLE_NAME + " WHERE " + SITE_ID + " = ?";
