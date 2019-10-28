@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface ReservationDAO {
-	/* Access all reservations by campground ID. */
-	public List<Reservation> getAllReservationsByCGId(int id);
 
-	/* Return a specific reservation by reservation ID. */
+	/*
+	 * Return a specific reservation by reservation ID. 
+	 * 
+	 * Legacy
+	 */
 	public Reservation getReservation(int id);
 
 	/*
@@ -21,6 +23,8 @@ public interface ReservationDAO {
 	 * available false if not. But it's looking like this method won't be getting
 	 * used after all now that I know just exactly what "TOP 5" is supposed to mean
 	 * (was I supposed to guess from context somehow?).
+	 * 
+	 * Legacy
 	 */
 	public boolean checkAvailabilityOfSite(int id, LocalDate from, LocalDate to);
 

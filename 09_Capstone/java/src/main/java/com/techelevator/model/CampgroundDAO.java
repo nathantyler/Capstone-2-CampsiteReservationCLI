@@ -6,9 +6,7 @@ public interface CampgroundDAO {
 	/* The user needs access to all campgrounds of a specific park */
 	public List<Campground> getAllCampgroundsByParkId(int id);
 
-	/*
-	 * The user *may* need to know if a campground is open during there desire stay.
-	 */
+	/* Legacy */
 	public List<Campground> getAllOpenCampgrounds(int id, int start, int end);
 
 	/* Return a specific Campground by campground ID */

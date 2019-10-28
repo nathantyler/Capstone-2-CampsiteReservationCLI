@@ -3,12 +3,10 @@
  */
 package com.techelevator.model.jdbc;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.techelevator.model.*;

@@ -12,13 +12,6 @@ public class Park {
 	private int visitors;
 	private String description;
 
-	/*
-	 * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The above satisfies requirement 1a=
-	 * A park includes an id, name, location, established date, area, annual visitor
-	 * count, and description.
-	 * 
-	 * Below are the getters and setters
-	 */
 
 	/**
 	 * @return the parkId
@@ -118,12 +111,13 @@ public class Park {
 		this.description = description;
 	}
 
-	@Override
-
-	// To print out message of park names
-	public String toString() {
-		return parkId + "   " + name + "   " + location + "   " + establishDate + "   " + area + "   " + visitors
-				+ "   " + description;
+	public String breakUpDescription(int lineLength) {
+		StringBuilder sb = new StringBuilder(description);
+		int i = 0;
+		while (i + lineLength < sb.length() && (i = sb.lastIndexOf(" ", i + lineLength)) != -1) {
+		    sb.replace(i, i + 1, "\n");
+		}
+		return sb.toString();
 	}
 
 }

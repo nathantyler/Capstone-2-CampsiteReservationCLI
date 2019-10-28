@@ -1,6 +1,5 @@
 package com.techelevator.model;
 
-
 public class Site {
 
 	private int siteId;
@@ -109,10 +108,16 @@ public class Site {
 		this.utilities = utilities;
 	}
 
-	@Override
-	public String toString() {
-		return siteId + "   " + campgroundId + "   " + siteNumber + "   " + maxOccupancy + "   " + accessible + "   "
-				+ maxRVLength + "   " + utilities;
+	public String getAccessibleString() {
+		return accessible ? "Yes" : "No";
+	}
+
+	public String getRvLenString() {
+		return maxRVLength > 0 ? maxRVLength + "" : "N/A";
+	}
+
+	public String getUtilitiesString() {
+		return utilities ? "Yes" : "N/A";
 	}
 
 }

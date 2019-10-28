@@ -2,13 +2,12 @@ package com.techelevator.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.Month;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class Campground {
 
-	// I had to change some of these variable names
-	// as I know they were gonna leave to confusion down the line
-	// I try to keep them as close to as possible to the database column names
-	// The underscores were just an "off-convention" thing.
 	private int campgroundId;
 	private int parkId;
 	private String name;
@@ -18,16 +17,7 @@ public class Campground {
 	private int openFromInt;
 	private int openToInt;
 
-	/*
-	 * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ The above satisfies requirement 2a=
-	 * A campground includes an id, name, open month, closing month, and a daily
-	 * fee.
-	 * 
-	 * Below are the getters and setters
-	 * 
-	 */
-
-	// In case we need to print out messages using strings and bigdecimal
+	
 	/**
 	 * @return the campgroundId
 	 */
@@ -112,9 +102,7 @@ public class Campground {
 		this.dailyFee = dailyFee.setScale(2);
 	}
 
-	// The column daliy_fee in the database uses the Postgres datatype "money".
-	// Java doesn't have a direct analog. As such, passing the dailyFee as String is
-	// probably going to be helpful.
+
 	public void setDailyFee(String dailyFee) {
 		this.dailyFee = new BigDecimal(dailyFee);
 	}
@@ -147,50 +135,7 @@ public class Campground {
 		this.openToInt = openToInt;
 	}
 
-	/**
-	 * @param Set openFromInt from a String
-	 */
-//	public void setOpenFromInt(String str) {
-//		try {
-//			this.openFromInt = Integer.parseInt(str);
-//		} catch (NumberFormatException e) {
-//			this.openFromInt = 0;
-//		}
-//	}
 
-	/**
-	 * @param set openToInt from a String
-	 */
-//	public void setOpenToInt(String str) {
-//		try {
-//			this.openFromInt = Integer.parseInt(str);
-//		} catch (NumberFormatException e) {
-//			this.openFromInt = 0;
-//		}
-//	}
-
-	/**
-	 * @param Set openFromInt openFrom
-	 */
-//	public void setOpenFromInt() {
-//		try {
-//			this.openFromInt = Integer.parseInt(openFrom);
-//		} catch (NumberFormatException e) {
-//			this.openFromInt = 0;
-//		}
-//	}
-
-	/**
-	 * @param set openToInt from a openTo
-	 */
-//	public void setOpenToInt() {
-//		try {
-//			this.openFromInt = Integer.parseInt(openTo);
-//		} catch (NumberFormatException e) {
-//			this.openFromInt = 0;
-//		}
-//	}
-	
 	public boolean CampgroundIsClosed(LocalDate from, LocalDate to) {
 		if (openFromInt == 1 && openToInt == 12)
 			return false;
@@ -199,9 +144,12 @@ public class Campground {
 		return from.isBefore(campOpen) || to.isAfter(campClosed);
 	}
 
-	@Override
-	public String toString() {
-		return name + "   " + openFrom + "    " + openTo + "    " + dailyFee;
+	public String getOpenMonthName() {
+		return Month.of(openFromInt).getDisplayName(TextStyle.FULL, Locale.US);
+	}
+	
+	public String getClosedMonthName() {
+		return Month.of(openToInt).getDisplayName(TextStyle.FULL, Locale.US);
 	}
 
 }

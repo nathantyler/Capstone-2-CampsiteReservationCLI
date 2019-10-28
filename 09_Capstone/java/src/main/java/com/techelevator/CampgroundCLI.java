@@ -1,17 +1,15 @@
 package com.techelevator;
 
-import java.sql.SQLException;
+import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
+
 import java.util.List;
 import java.util.Scanner;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.techelevator.model.*;
 import com.techelevator.model.jdbc.*;
@@ -24,14 +22,7 @@ public class CampgroundCLI {
 	private static final String PASSWORD = "postgres1";
 	private Menu menu;
 
-	private static final String MAIN_MENU_OPTION_PARKS = "Parks Info";
-	private static final String MAIN_MENU_OPTION_CAMPGROUNDS = "Campground info";
-//	private static final String MAIN_MENU_OPTION_SITES = "Sites";
-	private static final String MAIN_MENU_OPTION_RESERVATIONS = "Make Reservations";
 	private static final String MAIN_MENU_OPTION_EXIT = "End Application";
-	private static final String[] MAIN_MENU_OPTIONS = new String[] { MAIN_MENU_OPTION_PARKS,
-			MAIN_MENU_OPTION_CAMPGROUNDS, /* MAIN_MENU_OPTION_SITES, */ MAIN_MENU_OPTION_RESERVATIONS,
-			MAIN_MENU_OPTION_EXIT };
 
 	private static final String MENU_OPTION_RETURN_TO_MAIN = "Return to Park Selection";
 	private static final String PARK_MENU_OPTION_VIEW_CAMPGROUNDS = "View Campgrounds";
@@ -45,6 +36,27 @@ public class CampgroundCLI {
 	private static final String SEARCH_AGAIN_YES = "Yes";
 	private static final String SEARCH_AGAIN_NO = "No";
 	private static final String[] SEARCH_AGAIN_OPTIONS = new String[] { SEARCH_AGAIN_YES, SEARCH_AGAIN_NO };
+
+	private static final String LOCATION = "Location:";
+	private static final String ESTABLISHED = "Established:";
+	private static final String AREA = "Area:";
+	private static final String ANNUAL_VISITORS = "Annual Visitors:";
+
+	private static final String NUM = "#)";
+	private static final String NAME = "Name";
+	private static final String OPEN = "Open";
+	private static final String CLOSE = "Close";
+	private static final String DAILY_FEE = "Daily Fee";
+
+//	private static final String CAMPGROUND = "Campground";
+	private static final String SITE_NUM = "Site No.";
+	private static final String MAX_OCCUP = "Max Occup.";
+	private static final String ACCESSIBLE = "Accessible?";
+	private static final String RV_LEN = "RV Len";
+	private static final String UTILITY = "Utility";
+	private static final String COST = "Cost";
+
+	private static final int MAX_LINE_LENGTH = 80;
 
 	private ParkDAO pDao;
 	private CampgroundDAO cgDao;
@@ -70,7 +82,6 @@ public class CampgroundCLI {
 		dataSource.setUsername(USERNAME);
 		dataSource.setPassword(PASSWORD);
 
-		// create your DAOs here
 		pDao = new JDBCParkDAO(dataSource);
 		cgDao = new JDBCCampgroundDAO(dataSource);
 		sDao = new JDBCSiteDAO(dataSource);
@@ -80,12 +91,6 @@ public class CampgroundCLI {
 		for (int i = 0; i < parks.size(); i++)
 			parkNames[i] = parks.get(i).getName();
 		parkNames[parkNames.length - 1] = MAIN_MENU_OPTION_EXIT;
-//		LocalDate from = LocalDate.of(1999, 12, 31), to = LocalDate.of(2001, 9, 11);
-//
-
-//		List<Site> sites = sDao.getTopFiveAvailableSitesByCampId(7, from, to);
-//		for (Site site : sites)
-//			System.out.println(site.toString());
 
 	}
 
@@ -97,20 +102,13 @@ public class CampgroundCLI {
 				for (Park park : parks)
 					if (choice.equals(park.getName()))
 						handlePark(parks.indexOf(park));
-				// handleDepartments();
-				/*
-				 * } else if (choice.equals(MAIN_MENU_OPTION_CAMPGROUNDS)) { //
-				 * handleEmployees(); } else if (choice.equals(MAIN_MENU_OPTION_RESERVATIONS)) {
-				 * // handleProjects();
-				 */
-			} else {
+			} else
 				System.exit(0);
-			}
 		}
 	}
 
 	private void handlePark(int index) {
-		System.out.println("You chose this park: " + parks.get(index).getName());
+		printParkInfo(parks.get(index));
 		printHeading("Select a Command");
 		String choice = (String) menu.getChoiceFromOptions(PARK_MENU_OPTIONS);
 		if (choice.equals(PARK_MENU_OPTION_VIEW_CAMPGROUNDS))
@@ -120,10 +118,9 @@ public class CampgroundCLI {
 
 	private void handleCampgrounds(int index) {
 		camps = cgDao.getAllCampgroundsByParkId(parks.get(index).getParkId());
-		printHeading("Campgrounds");
+		printHeading(parks.get(index).getName() + " National Park Campgrounds");
 		System.out.println("");
-		for (Campground camp : camps)
-			System.out.println(camp.toString());
+		printCampInfo(camps);
 		printHeading("Select a Command");
 		String choice = (String) menu.getChoiceFromOptions(CG_MENU_OPTIONS);
 		if (choice.equals(CG_OPTION_SEARCH_RES)) {
@@ -132,13 +129,13 @@ public class CampgroundCLI {
 	}
 
 	private void handleReservation(int index) {
-		printHeading("Campgrounds");
+		printHeading(parks.get(index).getName() + " National Park Campgrounds");
 		System.out.println("");
-		for (Campground camp : camps)
-			System.out.println(camps.indexOf(camp) + 1 + ") " + camp.toString());
+		printCampInfo(camps);
 		int campNum = grabCampChoice();
 		Campground desiredCamp = null;
 		LocalDate from = null, to = null;
+
 		if (campNum > 0) {
 			desiredCamp = camps.get(campNum - 1);
 			System.out.println("What is the desired arrival date? (YYYY/MM/DD)>>");
@@ -154,8 +151,6 @@ public class CampgroundCLI {
 				System.out.println("The campground is closed during your desired stay...\n" + "Starting over.\n");
 				handleReservation(index);
 			}
-			System.out.println(from + "-" + to);
-			System.out.println(desiredCamp.toString());
 			handleSiteChoice(desiredCamp, from, to, index);
 		}
 
@@ -169,28 +164,25 @@ public class CampgroundCLI {
 			if (choice.equals(SEARCH_AGAIN_YES))
 				handleReservation(index);
 		} else {
-			for (Site site : sites)
-				System.out.println(sites.indexOf(site) + 1 + ") " + site.toString());
+			System.out.println("");
+			printSiteInfo(sites, cg.getDailyFee());
 			System.out.println("Which site should be reserved (enter 0 to cancel)>> ");
 			int choice = grabSiteChoice(sites.size());
-			System.out.println(sites.get(choice - 1).toString());
 			if (choice != 0)
 				System.out.println("The reservation has been made and the confirmation ID is "
-						+ makeReservation(sites.get(choice - 1).getSiteId(), from, to));
+						+ makeReservation(sites.get(choice - 1).getSiteId(), from, to) + ".");
 		}
 
 	}
 
 	private int makeReservation(int siteId, LocalDate from, LocalDate to) {
-		// scan = new Scanner(System.in);
 		System.out.println("What name should the reservation be made under? ");
 		String name = scan.nextLine();
 		return rDao.makeReservation(siteId, from, to, name);
 	}
 
 	private int grabSiteChoice(int size) {
-//		@SuppressWarnings("resource")
-//		Scanner scan = new Scanner(System.in);
+
 		int choiceNum = 0;
 		boolean tryAgain = true;
 		while (tryAgain) {
@@ -211,8 +203,6 @@ public class CampgroundCLI {
 	private LocalDate grabDesiredDate() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu/M/d");
 		dtf = dtf.withResolverStyle(ResolverStyle.STRICT);
-//		@SuppressWarnings("resource")
-//		Scanner scan = new Scanner(System.in);
 		String userStr = "";
 		LocalDate date = null;
 		boolean moveOn = false;
@@ -236,8 +226,6 @@ public class CampgroundCLI {
 	private int grabCampChoice() {
 		System.out.println("");
 		System.out.println("Which campground (enter 0 to cancel)?");
-//		@SuppressWarnings("resource")
-//		Scanner scan = new Scanner(System.in);
 		String userCamp = scan.nextLine();
 		int campNum = -1;
 		boolean moveOn = false;
@@ -256,6 +244,67 @@ public class CampgroundCLI {
 			}
 		}
 		return campNum;
+	}
+
+	public void printSiteInfo(List<Site> sites, BigDecimal cost) {
+
+		int count = 0;
+		System.out.println(NUM + generateSpace(NUM, 5) + SITE_NUM + generateSpace(SITE_NUM, 12) + MAX_OCCUP
+				+ generateSpace(MAX_OCCUP, 15) + ACCESSIBLE + generateSpace(ACCESSIBLE, 16) + RV_LEN
+				+ generateSpace(RV_LEN, 10) + UTILITY + generateSpace(UTILITY, 11) + COST);
+		for (Site site : sites) {
+			count++;
+			String numParen = count + ")";
+			System.out.println(numParen + generateSpace(numParen, 5) + site.getSiteNumber()
+					+ generateSpace(site.getSiteNumber() + "", 12) + site.getMaxOccupancy()
+					+ generateSpace(site.getMaxOccupancy() + "", 15) + site.getAccessibleString()
+					+ generateSpace(site.getAccessibleString(), 16) + site.getRvLenString()
+					+ generateSpace(site.getRvLenString(), 10) + site.getUtilitiesString()
+					+ generateSpace(site.getUtilitiesString(), 11) + "$" + cost.setScale(2));
+		}
+
+	}
+
+	public void printCampInfo(List<Campground> cgs) {
+		int maxNameLen = 0;
+		for (Campground cg : cgs)
+			maxNameLen = maxNameLen <= cg.getName().length() ? cg.getName().length() : maxNameLen;
+
+		int bigSpace = maxNameLen + 6, smallSpace = 5, mediumSpace = 12;
+		int count = 1;
+		System.out.println(NUM + generateSpace(NUM, smallSpace) + NAME + generateSpace(NAME, bigSpace) + OPEN
+				+ generateSpace(OPEN, mediumSpace) + CLOSE + generateSpace(CLOSE, mediumSpace) + DAILY_FEE);
+		for (Campground cg : cgs) {
+			String numParen = count + ")";
+			System.out.println(numParen + generateSpace(numParen, smallSpace) + cg.getName()
+					+ generateSpace(cg.getName(), bigSpace) + cg.getOpenMonthName()
+					+ generateSpace(cg.getOpenMonthName(), mediumSpace) + cg.getClosedMonthName()
+					+ generateSpace(cg.getClosedMonthName(), mediumSpace) + "$" + cg.getDailyFee().setScale(2));
+			count++;
+		}
+	}
+
+	public void printParkInfo(Park park) {
+		int spaces = 18;
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MM/dd/uuuu");
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setGroupingUsed(true);
+		System.out.println(park.getName() + " National Park");
+		System.out.println(LOCATION + generateSpace(LOCATION, spaces) + park.getLocation());
+		System.out.println(ESTABLISHED + generateSpace(ESTABLISHED, spaces) + park.getEstablishDate().format(dtf));
+		System.out.println(AREA + generateSpace(AREA, spaces) + nf.format(park.getArea()) + " sq. km.");
+		System.out.println(ANNUAL_VISITORS + generateSpace(ANNUAL_VISITORS, spaces) + nf.format(park.getVisitors()));
+		System.out.println("");
+		System.out.println(park.breakUpDescription(MAX_LINE_LENGTH));
+	}
+
+	public String generateSpace(String str, int spaces) {
+		int spaceLength = spaces - str.length();
+		String space = "";
+		for (int i = 1; i <= spaceLength; i++)
+			space += " ";
+
+		return space;
 	}
 
 	private void printHeading(String headingText) {

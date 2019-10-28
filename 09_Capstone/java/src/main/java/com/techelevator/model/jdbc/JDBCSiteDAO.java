@@ -14,11 +14,22 @@ import com.techelevator.model.SiteRowMapper;
 
 public class JDBCSiteDAO implements SiteDAO {
 
-	static final String TABLE_NAME = "site", SITE_ID = "site_id", CAMPGROUND_ID = "campground_id",
-			SITE_NUMBER = "site_number", MAX_OCCUPANCY = "max_occupancy", ACCESSIBLE = "accessible",
-			MAX_RV_LENGTH = "max_rv_length", UTILITIES = "utilities";
+	static final String TABLE_NAME    = "site", 
+						SITE_ID       = "site_id", 
+						CAMPGROUND_ID = "campground_id",
+						SITE_NUMBER   = "site_number", 
+						MAX_OCCUPANCY = "max_occupancy", 
+						ACCESSIBLE    = "accessible",
+						MAX_RV_LENGTH = "max_rv_length", 
+						UTILITIES     = "utilities";
 	
-	static final String[] COLUMN_NAMES = new String[] { SITE_ID, CAMPGROUND_ID, SITE_NUMBER, MAX_OCCUPANCY, ACCESSIBLE, MAX_RV_LENGTH, UTILITIES };
+	static final String[] COLUMN_NAMES = new String[] { SITE_ID, 
+														CAMPGROUND_ID, 
+														SITE_NUMBER, 
+														MAX_OCCUPANCY, 
+														ACCESSIBLE, 
+														MAX_RV_LENGTH, 
+														UTILITIES };
 
 	private JdbcTemplate jdbcT;
 
@@ -47,7 +58,6 @@ public class JDBCSiteDAO implements SiteDAO {
 					 RES_DOT_SITE_ID = JDBCReservationDAO.TABLE_NAME + "." + SITE_ID,
 					 RES_DOT_RES_ID = JDBCReservationDAO.TABLE_NAME + "." + JDBCReservationDAO.RESERVATION_ID,
 					 SITE_DOT_SITE_ID = TABLE_NAME + "." + SITE_ID,
-					 CG_DOT_CG_ID = JDBCCampgroundDAO.TABLE_NAME + "." + CAMPGROUND_ID,
 					 SITE_DOT_CG_ID = TABLE_NAME + "." + CAMPGROUND_ID;
 		String siteColumns = "";
 		for (int i = 0; i < COLUMN_NAMES.length; i++)
@@ -70,8 +80,7 @@ public class JDBCSiteDAO implements SiteDAO {
 							" AND " + RES_DOT_TO_DATE + ")" +
 							" GROUP BY " + SITE_DOT_SITE_ID +
 							" ORDER BY COUNT(" + RES_DOT_RES_ID + ") DESC, " +
-							SITE_DOT_SITE_ID + " ASC" +
-							" LIMIT 5";							
+							SITE_DOT_SITE_ID + " ASC LIMIT 5";							
 		
 		return jdbcT.query(monsterSql, new SiteRowMapper(), campId, from, to, from, to, from, to);
 	}
