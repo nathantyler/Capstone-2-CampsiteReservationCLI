@@ -2,7 +2,11 @@ package com.techelevator.model;
 
 import static org.junit.Assert.*;
 
+import java.math.BigDecimal;
+
 import org.junit.Test;
+
+
 
 public class CampgroundTest {
 
@@ -41,25 +45,28 @@ public class CampgroundTest {
 		assertEquals(camp.getOpenTo(),"Open to the 5th parallel");
 	}
 
-	@Test
-	public void testGetDailyFee() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testSetDailyFeeString() {
-		fail("Not yet implemented");
+		Campground camp = new Campground();
+		String dailyFee = "12.32";
+		camp.setDailyFee(dailyFee);
+		assertEquals(camp.getDailyFee(),new BigDecimal (dailyFee));
 	}
 
 	@Test
 	public void testSetDailyFeeBigDecimal() {
-		fail("Not yet implemented");
+		
+		BigDecimal bd1 = new BigDecimal ("1000.00");
+		Campground camp = new Campground();
+		camp.setDailyFee(bd1);
+		assertEquals(camp.getDailyFee(),bd1);
 	}
 
-
+/*
 	@Test
 	public void testToString() {
 		fail("Not yet implemented");
 	}
-
+*/
 }
